@@ -21,7 +21,7 @@ def index(request):
 			)
 		elif request.session['tipou'] == 'regalo':
 			participantes = Participante.objects.filter(
-				Q(registrado=True) &
+				Q(registrado=True) & Q(obsequio=False) &
 				(Q(nombre__startswith=q) | 
 				Q(apellido__startswith=q) |
 				Q(empresa__startswith=q) |
@@ -36,7 +36,7 @@ def index(request):
 			)
 	else:
 		if request.session['tipou'] == 'regalo':
-			participantes = None
+			participantes = Participante.objects.filter(registrado=True, obsequio=False)
 		else:
 			participantes = Participante.objects.filter(registrado=False)
 

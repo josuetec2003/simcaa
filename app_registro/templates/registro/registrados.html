@@ -1,5 +1,7 @@
 {% extends 'registro/base.html' %}
 
+{% load static %}
+
 {% block title %}
 	SIMCAA - Registro
 {% endblock %}
@@ -8,6 +10,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			{% if registrados %}
+
 			<p class="text-success">
 				<strong>
 					{{ registrados.count }} 
@@ -15,50 +18,51 @@
 					registrado{{ registrados.count|pluralize:"s" }}
 				</strong>
 			</p>
-			<table class="table table-sm mt-1">
-				<thead>
-					<tr>
-						<th>NOMBRE</th>
-						<th>APELLIDO</th>
-						<th>EMPRESA</th>
-						<th>CARGO</th>
-						<th>PAÍS</th>
-						<th>PARTICIPACIÓN</th>
-					</tr>
-				</thead>
+			<div class="table-responsive">
+				<table class="table table-bordered table-sm mt-1" id="tabla-registrados">
+					<thead>
+						<tr>
+							<th>NOMBRE</th>
+							<th>APELLIDO</th>
+							<th>ACTA_ESTUDIANTE</th>
+							<th>EMPRESA</th>
+							<th>CARGO</th>
+							<th>TITULO</th>
+							<th>PAÍS</th>
+							<th>CORREO</th>
+							<th>TEL.</th>
+							<th>TEL_MOVIL</th>
+							<th>FECHA_INSCRIPCION</th>
+							<th>COSTO</th>
+							<th>FECHA/PAGO</th>
+							<th>PARTICIPACIÓN</th>
+							<th>OBSERVACIONES</th>
+						</tr>
+					</thead>
 
-				<tbody>
-					{% for par in registrados %}
-					<tr id="tr-{{ par.id }}">
-						<td>{{ par.nombre|upper }}</td>
-						<td>{{ par.apellido|upper }}</td>
-						<td>
-							{% if par.empresa %}
-								{{ par.empresa|upper }}
-							{% else %}
-								-
-							{% endif %}
-						</td>
-						<td>
-							{% if par.cargo %}
-								{{ par.cargo|upper }}
-							{% else %}
-								-
-							{% endif %}
-						</td>
-						<td>
-							{% if par.pais %}
-								{{ par.pais|upper }}
-							{% else %}
-								-
-							{% endif %}
-						</td>
-						<td>{{ par.tipo_participante.tipo|upper }}</td>
-					</tr>
-						
-					{% endfor %}
-				</tbody>
-			</table>	
+					<tbody>
+						{% for par in registrados %}
+						<tr id="tr-{{ par.id }}">
+							<td>{{ par.nombre|upper }}</td>
+							<td>{{ par.apellido|upper }}</td>
+							<td>{% if par.acta_estudiante %}{{ par.acta_estudiante }}{% else %}-{% endif %}</td>
+							<td>{% if par.empresa %}{{ par.empresa|upper }}{% else %}-{% endif %}</td>
+							<td>{% if par.cargo %}{{ par.cargo|upper }}{% else %}-{% endif %}</td>
+							<td>{% if par.titulo %}{{ par.titulo|upper }}{% else %}-{% endif %}</td>
+							<td>{% if par.pais %}{{ par.pais|upper }}{% else %}-{% endif %}</td>
+							<td>{% if par.correo %}{{ par.correo|lower }}{% else %}-{% endif %}</td>
+							<td>{% if par.telefono %}{{ par.telefono }}{% else %}-{% endif %}</td>
+							<td>{% if par.movil %}{{ par.movil }}{% else %}-{% endif %}</td>
+							<td>{{ par.fecha_inscripcion|date:"d/m/Y" }}</td>
+							<td>{% if par.costo %}{{ par.costo }}{% else %}-{% endif %}</td>
+							<td>{{ par.fecha_pago|date:"d/m/Y" }}</td>
+							<td>{{ par.tipo_participante.tipo|upper }}</td>
+							<td>{% if par.observaciones %}{{ par.observaciones }}{% else %}-{% endif %}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 			{% else %}
 			<p class="text-danger text-center mt-5">
 				Aún no hay participantes registrados
@@ -66,4 +70,10 @@
 			{% endif %}
 		</div>
 	</div>
+{% endblock %}
+
+{% block js %}
+	<script src="{% static 'global/excel/xlsx.core.min.js' %}"></script>
+	<script src="{% static 'global/excel/FileSaver.min.js' %}"></script>
+	<script src="{% static 'global/excel/tableexport.min.js' %}"></script>
 {% endblock %}

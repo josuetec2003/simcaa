@@ -53,4 +53,20 @@ $(function () {
 
 	})
 
+	if (jQuery().tableExport)
+	{
+		var registrados = $('#tabla-registrados').tableExport({
+			headings: true,
+			footers: true,
+			bootstrap: false,
+			ignoreRows: null,
+			ignoreCols: null,
+			formats: ["xlsx"]
+		});
+
+		registrados.reset();
+		$('.button-default.xlsx').text('Exportar a MS Excel');
+	}
+
+
 })

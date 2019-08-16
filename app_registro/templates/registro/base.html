@@ -5,6 +5,21 @@
 	<meta charset="UTF-8">
 	<title>{% block title %}{% endblock %}</title>
 	<link rel="stylesheet" href="{% static 'global/bootstrap/css/bootstrap.min.css' %}">
+	<style>
+		.button-default.xlsx {
+			background: #259B35;
+			border: none;
+			border-radius: 4px;
+			color: #fff;
+			padding: 6px 10px;
+			content: 'Descargar';
+			transition: 0.5s ease;
+		}
+		.button-default.xlsx:hover {
+			background: #1E7A2B;
+			transition: 0.5s ease;
+		}
+	</style>
 </head>
 <body>
 	<div class="container-fluid mt-4">
@@ -41,6 +56,9 @@
 	
 	<script src="{% static 'global/js/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static 'global/bootstrap/js/bootstrap.min.js' %}"></script>
+
+	{% block js %}{% endblock %}
+
 	<script src="{% static 'global/js/app.js' %}"></script>
 </body>
 </html>

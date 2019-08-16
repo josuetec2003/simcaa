@@ -36,6 +36,7 @@
 							<th>COSTO</th>
 							<th>FECHA/PAGO</th>
 							<th>PARTICIPACIÓN</th>
+							<th>OBSEQUIO ENTREGADO</th>
 							<th>OBSERVACIONES</th>
 						</tr>
 					</thead>
@@ -57,6 +58,7 @@
 							<td>{% if par.costo %}{{ par.costo }}{% else %}-{% endif %}</td>
 							<td>{{ par.fecha_pago|date:"d/m/Y" }}</td>
 							<td>{{ par.tipo_participante.tipo|upper }}</td>
+							<td>{% if par.obsequio %}SI{% else %}NO{% endif %}</td>
 							<td>{% if par.observaciones %}{{ par.observaciones }}{% else %}-{% endif %}</td>
 						</tr>
 						{% endfor %}

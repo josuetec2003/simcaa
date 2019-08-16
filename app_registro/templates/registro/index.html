@@ -1,0 +1,97 @@
+{% extends "registro/base.html" %}
+
+{% block title %}
+	Registro index
+{% endblock %}
+
+{% block content %}
+	
+	<div class="row">
+		<div class="col-md-12">
+			<form action="">
+				<div class="row">
+					<div class="col-md-10">
+						<input type="text" autofocus
+							name="q"
+							class="form-control form-control-lg"
+							placeholder="Buscar por nombre, apellido, empresa o país">
+					</div>
+
+					<div class="col-md-2">
+						<input type="submit"
+							value="Buscar"
+							class="btn btn-primary btn-block btn-lg">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	{% if participantes %}
+	<div class="row mt-5">
+		<div class="col-md-12">
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>NOMBRE</th>
+						<th>APELLIDO</th>
+						<th>EMPRESA</th>
+						<th>CARGO</th>
+						<th>PAÍS</th>
+						<th>PAGO REALIZADO</th>
+						<th>PARTICIPACIÓN</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for par in participantes %}
+					<tr id="tr-{{ par.id }}">
+						<td>{{ par.nombre|upper }}</td>
+						<td>{{ par.apellido|upper }}</td>
+						<td>{% if par.empresa %}{{ par.empresa|upper }}{% else %}-{% endif %}</td>
+						<td>{% if par.cargo %}{{ par.cargo|upper }}{% else %}-{% endif %}</td>
+						<td>{% if par.pais %}{{ par.pais|upper }}{% else %}-{% endif %}</td>
+						<td>
+							{% if not par.fecha_pago %}
+							<span class="text-danger">NO</span>
+							{% else %}
+							<span class="text-success">SI</span>
+							{% endif %}
+						</td>
+						<td>{{ par.tipo_participante.tipo|upper }}</td>
+						<td class="text-right">
+						{% if request.session.tipou != 'regalo' %}
+							<button class="btn btn-success btn-sm btn-registrar"
+									data-id="{{ par.id }}"
+									data-url="{% url 'registro:registrar' %}">Registrar</button>
+
+							<button class="btn btn-info btn-sm btn-pagar"
+									data-id="{{ par.id }}"
+									data-url="{% url 'registro:registrar' %}">Pagar y registrar</button>
+						{% else %}
+							<button class="btn btn-success btn-sm btn-regalar" {{ par.obsequio|yesno:"disabled," }}
+									data-id="{{ par.id }}"
+									data-url="{% url 'registro:registrar' %}">Obsequio</button>
+						{% endif %}
+						</td>
+					</tr>
+						
+					{% endfor %}
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+	{% else %}
+		{% if q %}
+		<div class="row mt-5">
+			<div class="col-md-12 text-danger text-monospace">
+				No se encontraron participantes
+			</div>
+		</div>
+		{% endif %}
+	{% endif %}
+
+
+{% endblock %}

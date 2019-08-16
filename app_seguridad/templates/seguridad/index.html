@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicie sesión</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'global/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'global/bootstrap/css/signin.css' %}">
+  <link rel="shortcut icon" href="" >
+</head>
+<body>
+   {% if form.non_field_errors %}
+    <div class='form-errors'>
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="container">
+      <form class="form-signin" method="post" action="{% url 'procesar_login' %}">
+        {% csrf_token %}
+        <div><img class="mb-4" src="{% static 'global/img/logo-simcaa.png' %}" alt="logo" height="72"></div>
+        <h1 class="h3 mb-3 font-weight-normal">Inicie sesión</h1>
+
+        {{ form.username }}
+        {{ form.password }}
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">ENTRAR</button>
+        <p class="mt-5 mb-3 text-muted">&copy; SIMCAA</p>
+      </form>
+    </div>
+
+<script src="{% static 'global/js/jquery-3.3.1.min.js' %}"></script>
+<script>
+  $(function () {
+    $('#id_username, #id_password').on('keypress', function () {
+      $('.form-errors').slideUp();
+    })
+  })
+</script>
+</body>
+</html>
+

@@ -9,7 +9,6 @@ class TipoParticipante(models.Model):
 
 class Participante(models.Model):
 	nombre 			= models.CharField(max_length=25)
-	apellido 		= models.CharField(max_length=25)
 	acta_estudiante = models.CharField(max_length=30, null=True, blank=True)
 	empresa 		= models.CharField(max_length=35, null=True, blank=True)
 	cargo 			= models.CharField(max_length=50, null=True, blank=True)
@@ -18,9 +17,9 @@ class Participante(models.Model):
 	correo 			= models.EmailField(null=True, blank=True)
 	telefono 		= models.CharField(max_length=15, null=True, blank=True)
 	movil 			= models.CharField(max_length=15, null=True, blank=True)
-	fecha_inscripcion = models.DateField()
-	costo 			= models.IntegerField(null=True, blank=True)
-	fecha_pago 		= models.DateTimeField(null=True, blank=True)
+	fecha_inscripcion = models.CharField(null=True, blank=True, max_length=25)
+	costo 			= models.CharField(null=True, blank=True, max_length=10)
+	fecha_pago 		= models.CharField(null=True, blank=True, max_length=25)
 	observaciones 	= models.TextField(null=True, blank=True)
 	tipo_participante = models.ForeignKey(TipoParticipante, on_delete=models.SET_NULL, null=True)
 	registrado		= models.BooleanField(default=False)
@@ -28,5 +27,4 @@ class Participante(models.Model):
 
 
 	def __str__(self):
-		return f'{self.nombre} {self.apellido}'
-
+		return f'{self.nombre}'

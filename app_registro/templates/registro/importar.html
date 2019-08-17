@@ -1,0 +1,24 @@
+{% extends 'registro/base.html' %}
+
+{% load static %}
+
+{% block title %}
+	SIMCAA - Importar Listado en Excel
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<form action="#" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			Selecciona el archivo a subir:
+			<input type="file" name="flListado" id="fileToUpload">
+			<input type="submit" value="Subir listado" name="btnEnviar">
+		</form> 
+	</div>
+{% endblock %}
+
+{% block js %}
+	<script src="{% static 'global/excel/xlsx.core.min.js' %}"></script>
+	<script src="{% static 'global/excel/FileSaver.min.js' %}"></script>
+	<script src="{% static 'global/excel/tableexport.min.js' %}"></script>
+{% endblock %}

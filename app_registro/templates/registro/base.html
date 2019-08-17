@@ -38,6 +38,7 @@
 					class="{% if page_name == 'registro' %}font-weight-bolder{% endif %}">INICIO</a> •
 				<a href="{% url 'registro:registrados' %}"
 					class="{% if page_name == 'registrados' %}font-weight-bolder{% endif %}">REGISTRADOS</a> •
+				<a href="{% url 'registro:importar' %}" class="{% if page_name == 'importar' %}font-weight-bolder{% endif %}"> IMPORTAR </a> •
 				<a href="{% url 'procesar_logout' %}">SALIR</a>
 			</div>
 

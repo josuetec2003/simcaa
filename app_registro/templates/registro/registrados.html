@@ -23,7 +23,6 @@
 					<thead>
 						<tr>
 							<th>NOMBRE</th>
-							<th>APELLIDO</th>
 							<th>ACTA_ESTUDIANTE</th>
 							<th>EMPRESA</th>
 							<th>CARGO</th>
@@ -45,7 +44,6 @@
 						{% for par in registrados %}
 						<tr id="tr-{{ par.id }}">
 							<td>{{ par.nombre|upper }}</td>
-							<td>{{ par.apellido|upper }}</td>
 							<td>{% if par.acta_estudiante %}{{ par.acta_estudiante }}{% else %}-{% endif %}</td>
 							<td>{% if par.empresa %}{{ par.empresa|upper }}{% else %}-{% endif %}</td>
 							<td>{% if par.cargo %}{{ par.cargo|upper }}{% else %}-{% endif %}</td>

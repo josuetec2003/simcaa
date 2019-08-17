@@ -25,7 +25,7 @@ SECRET_KEY = 'q*%*ouf8gutszdynlsn#)3lgb5_rd85$ol7bspw-pbc%gnrm_0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler", "django_excel.TemporaryExcelFileUploadHandler")
 
 ROOT_URLCONF = 'simcaa.urls'
 

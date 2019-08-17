@@ -53,22 +53,22 @@ def index(request):
 		if request.session['tipou'] == 'registrador':
 			participantes = Participante.objects.filter(
 				Q(registrado=False) &
-				(Q(nombre__startswith=q) |
-				Q(empresa__startswith=q) |
-				Q(pais__startswith=q))
+				(Q(nombre__contains=q) |
+				Q(empresa__contains=q) |
+				Q(pais__contains=q))
 			)
 		elif request.session['tipou'] == 'regalo':
 			participantes = Participante.objects.filter(
 				Q(registrado=True) & Q(obsequio=False) &
-				(Q(nombre__startswith=q) |
-				Q(empresa__startswith=q) |
-				Q(pais__startswith=q))
+				(Q(nombre__contains=q) |
+				Q(empresa__contains=q) |
+				Q(pais__contains=q))
 			)
 		else:
 			participantes = Participante.objects.filter(
-				Q(nombre__startswith=q) |
-				Q(empresa__startswith=q) |
-				Q(pais__startswith=q)
+				Q(nombre__contains=q) |
+				Q(empresa__contains=q) |
+				Q(pais__contains=q)
 			)
 	else:
 		if request.session['tipou'] == 'regalo':

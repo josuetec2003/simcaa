@@ -52,9 +52,9 @@
 							<td>{% if par.correo %}{{ par.correo|lower }}{% else %}-{% endif %}</td>
 							<td>{% if par.telefono %}{{ par.telefono }}{% else %}-{% endif %}</td>
 							<td>{% if par.movil %}{{ par.movil }}{% else %}-{% endif %}</td>
-							<td>{{ par.fecha_inscripcion|date:"d/m/Y" }}</td>
+							<td>{{ par.fecha_inscripcion }}</td>
 							<td>{% if par.costo %}{{ par.costo }}{% else %}-{% endif %}</td>
-							<td>{{ par.fecha_pago|date:"d/m/Y" }}</td>
+							<td>{{ par.fecha_pago }}</td>
 							<td>{{ par.tipo_participante.tipo|upper }}</td>
 							<td>{% if par.obsequio %}SI{% else %}NO{% endif %}</td>
 							<td>{% if par.observaciones %}{{ par.observaciones }}{% else %}-{% endif %}</td>
